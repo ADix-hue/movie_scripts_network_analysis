@@ -1,0 +1,1066 @@
+<?xml version='1.0' encoding='utf-8'?>
+<graphml xmlns="http://graphml.graphdrawing.org/xmlns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://graphml.graphdrawing.org/xmlns http://graphml.graphdrawing.org/xmlns/1.0/graphml.xsd"><key id="d0" for="edge" attr.name="weight" attr.type="long"/>
+<graph edgedefault="undirected"><node id="PHIL"/>
+<node id="RITA"/>
+<node id="LARRY"/>
+<node id="RALPH"/>
+<node id="NED"/>
+<node id="NANCY"/>
+<node id="DEEJAY"/>
+<node id="INSERT"/>
+<node id="MARY"/>
+<node id="STEPHANIE"/>
+<node id="SIDEKICK"/>
+<node id="CHUBBY MAN"/>
+<node id="BUSTER"/>
+<node id="HAWLEY"/>
+<node id="BOTH DEEJAYS"/>
+<node id="C LOSE UP - CLOCK"/>
+<node id="HIS POV"/>
+<node id="PHIL AND SIDEKICK"/>
+<node id="WAITER"/>
+<node id="GUS"/>
+<node id="THEIR POV"/>
+<node id="PHIL'S POV"/>
+<node id="SAME SCENE - ANOTHER DAY"/>
+<node id="ALEX"/>
+<node id="CONTESTANT"/>
+<node id="LIBRARIAN"/>
+<node id="FIRST OFFICIAL"/>
+<node id="DORIS"/>
+<node id="FRED"/>
+<node id="LATER"/>
+<node id="NURSE"/>
+<node id="A SIGN"/>
+<node id="SIDEK ICK"/>
+<node id="B U ST E R"/>
+<node id="PATROLMAN"/>
+<node id="INSERT - A THICK BOOK"/>
+<node id="SIDEKICK AND PHIL"/>
+<node id="PASSERBY"/>
+<node id="CLOSE UP - CLOCK"/>
+<node id="PHIL AND DEEJAY"/>
+<node id="PSYCHOLOGIST"/>
+<node id="SCIENTIST"/>
+<node id="LITTLE BOY"/>
+<node id="LITTLE GIRL"/>
+<node id="T EACHER"/>
+<node id="TEACHER"/>
+<node id="V RALPH"/>
+<node id="POLICE CAR"/>
+<node id="PHIL AND RALPH"/>
+<node id="WOMAN"/>
+<node id="FIRST GUARD"/>
+<node id="S E C O N D GUARD"/>
+<node id="SALESMAN"/>
+<node id="LARAINE"/>
+<node id="ANGIE"/>
+<node id="THE--&#13;&#10;&#13;&#10;           PHIL"/>
+<node id="BARTENDER"/>
+<node id="R IT A"/>
+<node id="FIRST HUSTLER"/>
+<node id="SECOND HUSTLER"/>
+<node id="ALEX TREBECK"/>
+<node id="CLOSE UP - TV SET"/>
+<node id="COP"/>
+<node id="DOG WALKER"/>
+<node id="IPHIL"/>
+<node id="JOEY"/>
+<node id="MIKE AND SUE"/>
+<node id="BYSTANDER"/>
+<node id="B USTER"/>
+<node id="OTHER OFFICIAL"/>
+<node id="A TV SCREEN"/>
+<node id="D RIVERS' POV"/>
+<node id="REVEAL"/>
+<node id="C LOSE UP - THE CLOCK"/>
+<node id="PIZZA GUY"/>
+<node id="THE PIZZA BOX - LATER"/>
+<node id="MARIE"/>
+<node id="BUSINESSMAN"/>
+<node id="FIRST BUSINESSMAN"/>
+<node id="JERRY"/>
+<node id="SECOND BUSINESSMAN"/>
+<node id="ALL THE KIDS"/>
+<node id="KID"/>
+<node id="KIDS"/>
+<node id="ANDY"/>
+<node id="BUD"/>
+<node id="GLOW"/>
+<node id="CLOSE UP - THE CLOCK"/>
+<node id="HIS POV - THE STREET"/>
+<node id="LEO"/>
+<node id="S IDEKICK"/>
+<node id="A LADY"/>
+<node id="A MAN"/>
+<node id="FLORIST"/>
+<edge source="PHIL" target="RITA">
+  <data key="d0">33</data>
+</edge>
+<edge source="PHIL" target="LARRY">
+  <data key="d0">13</data>
+</edge>
+<edge source="PHIL" target="RALPH">
+  <data key="d0">7</data>
+</edge>
+<edge source="PHIL" target="NED">
+  <data key="d0">6</data>
+</edge>
+<edge source="PHIL" target="NANCY">
+  <data key="d0">5</data>
+</edge>
+<edge source="PHIL" target="DEEJAY">
+  <data key="d0">4</data>
+</edge>
+<edge source="PHIL" target="INSERT">
+  <data key="d0">4</data>
+</edge>
+<edge source="PHIL" target="MARY">
+  <data key="d0">4</data>
+</edge>
+<edge source="PHIL" target="STEPHANIE">
+  <data key="d0">3</data>
+</edge>
+<edge source="PHIL" target="CHUBBY MAN">
+  <data key="d0">3</data>
+</edge>
+<edge source="PHIL" target="BUSTER">
+  <data key="d0">3</data>
+</edge>
+<edge source="PHIL" target="HAWLEY">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="BOTH DEEJAYS">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="SIDEKICK">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="C LOSE UP - CLOCK">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="HIS POV">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="PHIL AND SIDEKICK">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="WAITER">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="GUS">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="THEIR POV">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="PHIL'S POV">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="SAME SCENE - ANOTHER DAY">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="ALEX">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="CONTESTANT">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="LIBRARIAN">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="DORIS">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="FRED">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="LATER">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="NURSE">
+  <data key="d0">2</data>
+</edge>
+<edge source="PHIL" target="A SIGN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="SIDEK ICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="B U ST E R">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="PATROLMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="INSERT - A THICK BOOK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="SIDEKICK AND PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="PASSERBY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="CLOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="PHIL AND DEEJAY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="PSYCHOLOGIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="SCIENTIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="V RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="POLICE CAR">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="WOMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="FIRST GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="S E C O N D GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="SALESMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="LARAINE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="ANGIE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="THE--&#13;&#10;&#13;&#10;           PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="BARTENDER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="R IT A">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="FIRST HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="SECOND HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="ALEX TREBECK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="CLOSE UP - TV SET">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="COP">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="DOG WALKER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="IPHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="JOEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="BYSTANDER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="B USTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="FIRST OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="OTHER OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="C LOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="PIZZA GUY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="THE PIZZA BOX - LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="MARIE">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="FIRST BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="JERRY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="SECOND BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="ALL THE KIDS">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="KID">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="KIDS">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="A LADY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="A MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL" target="FLORIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="LARRY">
+  <data key="d0">13</data>
+</edge>
+<edge source="RITA" target="BUSTER">
+  <data key="d0">3</data>
+</edge>
+<edge source="RITA" target="NED">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="WAITER">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="NANCY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="SAME SCENE - ANOTHER DAY">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="DORIS">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="FRED">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="LATER">
+  <data key="d0">2</data>
+</edge>
+<edge source="RITA" target="HAWLEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="STEPHANIE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="B U ST E R">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="CLOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="PHIL AND DEEJAY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="PHIL AND SIDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="INSERT">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="PHIL'S POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="THE--&#13;&#10;&#13;&#10;           PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="BARTENDER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="R IT A">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="FIRST HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="SECOND HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="COP">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="DOG WALKER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="IPHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="JOEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="B USTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="FIRST OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="OTHER OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="C LOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="PIZZA GUY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="THE PIZZA BOX - LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="FIRST BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="JERRY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="SECOND BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="ALL THE KIDS">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="KID">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="KIDS">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="ANDY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="BUD">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="GLOW">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="DEEJAY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="HIS POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="MARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RITA" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="BUSTER">
+  <data key="d0">3</data>
+</edge>
+<edge source="LARRY" target="NED">
+  <data key="d0">2</data>
+</edge>
+<edge source="LARRY" target="WAITER">
+  <data key="d0">2</data>
+</edge>
+<edge source="LARRY" target="B U ST E R">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="CLOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="INSERT">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="PHIL'S POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="COP">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="DOG WALKER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="IPHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="JOEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="B USTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="FIRST OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="OTHER OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="DORIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="FRED">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="A LADY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="A MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="LARRY" target="FLORIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="GUS">
+  <data key="d0">2</data>
+</edge>
+<edge source="RALPH" target="V RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="C LOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="DEEJAY">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="PHIL AND SIDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="THEIR POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="DORIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="FRED">
+  <data key="d0">1</data>
+</edge>
+<edge source="RALPH" target="WAITER">
+  <data key="d0">1</data>
+</edge>
+<edge source="NED" target="BUSTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="NED" target="CLOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="NED" target="NANCY">
+  <data key="d0">1</data>
+</edge>
+<edge source="NED" target="A LADY">
+  <data key="d0">1</data>
+</edge>
+<edge source="NED" target="A MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="NED" target="FLORIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="NANCY" target="INSERT">
+  <data key="d0">1</data>
+</edge>
+<edge source="NANCY" target="INSERT - A THICK BOOK">
+  <data key="d0">1</data>
+</edge>
+<edge source="NANCY" target="WOMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="NANCY" target="FIRST HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="NANCY" target="SECOND HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="SIDEKICK">
+  <data key="d0">3</data>
+</edge>
+<edge source="DEEJAY" target="BOTH DEEJAYS">
+  <data key="d0">2</data>
+</edge>
+<edge source="DEEJAY" target="HIS POV">
+  <data key="d0">2</data>
+</edge>
+<edge source="DEEJAY" target="SIDEK ICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="SIDEKICK AND PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="C LOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="GUS">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="PHIL AND SIDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="THEIR POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="DORIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="FRED">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="MARY">
+  <data key="d0">1</data>
+</edge>
+<edge source="DEEJAY" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="INSERT" target="INSERT - A THICK BOOK">
+  <data key="d0">1</data>
+</edge>
+<edge source="INSERT" target="C LOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="INSERT" target="STEPHANIE">
+  <data key="d0">1</data>
+</edge>
+<edge source="INSERT" target="WAITER">
+  <data key="d0">1</data>
+</edge>
+<edge source="INSERT" target="PSYCHOLOGIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="INSERT" target="SCIENTIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="DORIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="FRED">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="HIS POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="MARY" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="STEPHANIE" target="HAWLEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="STEPHANIE" target="C LOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="SIDEKICK" target="BOTH DEEJAYS">
+  <data key="d0">2</data>
+</edge>
+<edge source="SIDEKICK" target="SIDEK ICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="SIDEKICK" target="HIS POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="SIDEKICK" target="SIDEKICK AND PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSTER" target="FIRST OFFICIAL">
+  <data key="d0">2</data>
+</edge>
+<edge source="BUSTER" target="B U ST E R">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSTER" target="CLOSE UP - CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSTER" target="B USTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSTER" target="OTHER OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOTH DEEJAYS" target="SIDEK ICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOTH DEEJAYS" target="HIS POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="BOTH DEEJAYS" target="SIDEKICK AND PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="C LOSE UP - CLOCK" target="GUS">
+  <data key="d0">1</data>
+</edge>
+<edge source="C LOSE UP - CLOCK" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="C LOSE UP - CLOCK" target="PHIL AND SIDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="C LOSE UP - CLOCK" target="THEIR POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="SIDEKICK AND PHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="DORIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="FRED">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL AND SIDEKICK" target="PHIL AND DEEJAY">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL AND SIDEKICK" target="GUS">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL AND SIDEKICK" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL AND SIDEKICK" target="THEIR POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="WAITER" target="DORIS">
+  <data key="d0">1</data>
+</edge>
+<edge source="WAITER" target="FRED">
+  <data key="d0">1</data>
+</edge>
+<edge source="GUS" target="V RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="GUS" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="GUS" target="THEIR POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="THEIR POV" target="PHIL AND RALPH">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL'S POV" target="BYSTANDER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PHIL'S POV" target="LIBRARIAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="SAME SCENE - ANOTHER DAY" target="BARTENDER">
+  <data key="d0">1</data>
+</edge>
+<edge source="SAME SCENE - ANOTHER DAY" target="R IT A">
+  <data key="d0">1</data>
+</edge>
+<edge source="ALEX" target="CONTESTANT">
+  <data key="d0">2</data>
+</edge>
+<edge source="ALEX" target="ALEX TREBECK">
+  <data key="d0">1</data>
+</edge>
+<edge source="ALEX" target="CLOSE UP - TV SET">
+  <data key="d0">1</data>
+</edge>
+<edge source="CONTESTANT" target="ALEX TREBECK">
+  <data key="d0">1</data>
+</edge>
+<edge source="CONTESTANT" target="CLOSE UP - TV SET">
+  <data key="d0">1</data>
+</edge>
+<edge source="LIBRARIAN" target="BYSTANDER">
+  <data key="d0">1</data>
+</edge>
+<edge source="FIRST OFFICIAL" target="B USTER">
+  <data key="d0">1</data>
+</edge>
+<edge source="FIRST OFFICIAL" target="OTHER OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="DORIS" target="FRED">
+  <data key="d0">2</data>
+</edge>
+<edge source="DORIS" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="DORIS" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="DORIS" target="LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="DORIS" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="DORIS" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="FRED" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="FRED" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="FRED" target="LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="FRED" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="FRED" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="C LOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="PIZZA GUY">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="THE PIZZA BOX - LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="CLOSE UP - THE CLOCK">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="LATER" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="PSYCHOLOGIST" target="SCIENTIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="LITTLE BOY" target="LITTLE GIRL">
+  <data key="d0">1</data>
+</edge>
+<edge source="LITTLE BOY" target="T EACHER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LITTLE BOY" target="TEACHER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LITTLE GIRL" target="T EACHER">
+  <data key="d0">1</data>
+</edge>
+<edge source="LITTLE GIRL" target="TEACHER">
+  <data key="d0">1</data>
+</edge>
+<edge source="T EACHER" target="TEACHER">
+  <data key="d0">1</data>
+</edge>
+<edge source="FIRST GUARD" target="S E C O N D GUARD">
+  <data key="d0">1</data>
+</edge>
+<edge source="BARTENDER" target="R IT A">
+  <data key="d0">1</data>
+</edge>
+<edge source="FIRST HUSTLER" target="SECOND HUSTLER">
+  <data key="d0">1</data>
+</edge>
+<edge source="ALEX TREBECK" target="CLOSE UP - TV SET">
+  <data key="d0">1</data>
+</edge>
+<edge source="COP" target="DOG WALKER">
+  <data key="d0">1</data>
+</edge>
+<edge source="COP" target="IPHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="COP" target="JOEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="COP" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="DOG WALKER" target="IPHIL">
+  <data key="d0">1</data>
+</edge>
+<edge source="DOG WALKER" target="JOEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="DOG WALKER" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="IPHIL" target="JOEY">
+  <data key="d0">1</data>
+</edge>
+<edge source="IPHIL" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="JOEY" target="MIKE AND SUE">
+  <data key="d0">1</data>
+</edge>
+<edge source="B USTER" target="OTHER OFFICIAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="A TV SCREEN" target="D RIVERS' POV">
+  <data key="d0">1</data>
+</edge>
+<edge source="A TV SCREEN" target="REVEAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="D RIVERS' POV" target="REVEAL">
+  <data key="d0">1</data>
+</edge>
+<edge source="C LOSE UP - THE CLOCK" target="PIZZA GUY">
+  <data key="d0">1</data>
+</edge>
+<edge source="C LOSE UP - THE CLOCK" target="THE PIZZA BOX - LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="PIZZA GUY" target="THE PIZZA BOX - LATER">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSINESSMAN" target="FIRST BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSINESSMAN" target="JERRY">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUSINESSMAN" target="SECOND BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="FIRST BUSINESSMAN" target="JERRY">
+  <data key="d0">1</data>
+</edge>
+<edge source="FIRST BUSINESSMAN" target="SECOND BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="JERRY" target="SECOND BUSINESSMAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="ALL THE KIDS" target="KID">
+  <data key="d0">1</data>
+</edge>
+<edge source="ALL THE KIDS" target="KIDS">
+  <data key="d0">1</data>
+</edge>
+<edge source="KID" target="KIDS">
+  <data key="d0">1</data>
+</edge>
+<edge source="ANDY" target="BUD">
+  <data key="d0">1</data>
+</edge>
+<edge source="ANDY" target="GLOW">
+  <data key="d0">1</data>
+</edge>
+<edge source="BUD" target="GLOW">
+  <data key="d0">1</data>
+</edge>
+<edge source="CLOSE UP - THE CLOCK" target="HIS POV - THE STREET">
+  <data key="d0">1</data>
+</edge>
+<edge source="CLOSE UP - THE CLOCK" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="CLOSE UP - THE CLOCK" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV - THE STREET" target="LEO">
+  <data key="d0">1</data>
+</edge>
+<edge source="HIS POV - THE STREET" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="LEO" target="S IDEKICK">
+  <data key="d0">1</data>
+</edge>
+<edge source="A LADY" target="A MAN">
+  <data key="d0">1</data>
+</edge>
+<edge source="A LADY" target="FLORIST">
+  <data key="d0">1</data>
+</edge>
+<edge source="A MAN" target="FLORIST">
+  <data key="d0">1</data>
+</edge>
+</graph></graphml>
