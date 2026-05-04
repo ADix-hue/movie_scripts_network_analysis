@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dzień Świstaka – Analiza Sieci Postaci</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.8.5/d3.min.js"></script>
+<style>
+:root {
+  --bg:          #060E1C;
+  --bg-panel:    #0A1628;
+  --bg-card:     #0E1E38;
+  --bg-hover:    #132440;
+  --border:      #1A3058;
+  --border-lt:   #2A4878;
+  --gold:        #F4A824;
+  --gold-dim:    #9A6A12;
+  --gold-glow:   rgba(244,168,36,0.25);
+  --ice:         #7EC8E8;
+  --ice-dim:     #3A7AAA;
+  --red:         #C42040;
+  --text:        #E8E0D0;
+  --text-muted:  #7090B8;
+  --text-dim:    #3A5070;
+  --font-d:      'Playfair Display', Georgia, serif;
+  --font-b:      'Courier Prime', 'Courier New', monospace;
+  --c0:          #DD72CC;
+  --c1:          #44CC60;
+  --c2:          #9B52D0;
+  --c3:          #A8CC30;
+  --cx:          #3A5870;
+  --shadow:      0 4px 24px rgba(0,0,0,0.5);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-b);
+  min-height: 100%;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Animated snow background */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(ellipse 60% 40% at 15% 25%, rgba(126,200,232,0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 85% 75%, rgba(244,168,36,0.04) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Ccircle cx='20' cy='35' r='1.2' fill='%23ffffff09'/%3E%3Ccircle cx='80' cy='15' r='0.8' fill='%23ffffff07'/%3E%3Ccircle cx='150' cy='60' r='1.5' fill='%23ffffff06'/%3E%3Ccircle cx='220' cy='25' r='0.9' fill='%23ffffff08'/%3E%3Ccircle cx='300' cy='80' r='1.1' fill='%23ffffff05'/%3E%3Ccircle cx='370' cy='40' r='0.7' fill='%23ffffff09'/%3E%3Ccircle cx='50' cy='120' r='1.0' fill='%23ffffff06'/%3E%3Ccircle cx='130' cy='150' r='0.6' fill='%23ffffff07'/%3E%3Ccircle cx='200' cy='110' r='1.3' fill='%23ffffff05'/%3E%3Ccircle cx='280' cy='165' r='0.8' fill='%23ffffff08'/%3E%3Ccircle cx='350' cy='130' r='1.1' fill='%23ffffff06'/%3E%3Ccircle cx='10' cy='200' r='0.7' fill='%23ffffff07'/%3E%3Ccircle cx='90' cy='240' r='1.4' fill='%23ffffff05'/%3E%3Ccircle cx='170' cy='210' r='0.9' fill='%23ffffff08'/%3E%3Ccircle cx='250' cy='260' r='1.2' fill='%23ffffff06'/%3E%3Ccircle cx='330' cy='220' r='0.6' fill='%23ffffff07'/%3E%3Ccircle cx='40' cy='310' r='1.0' fill='%23ffffff05'/%3E%3Ccircle cx='110' cy='350' r='0.8' fill='%23ffffff09'/%3E%3Ccircle cx='190' cy='320' r='1.3' fill='%23ffffff06'/%3E%3Ccircle cx='260' cy='370' r='0.7' fill='%23ffffff07'/%3E%3Ccircle cx='340' cy='330' r='1.1' fill='%23ffffff05'/%3E%3Ccircle cx='390' cy='290' r='0.9' fill='%23ffffff08'/%3E%3C/svg%3E");
+}
+
+/* ═══════════ HEADER ═══════════ */
+header {
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(180deg, #0A1628 0%, rgba(6,14,28,0.95) 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-shrink: 0;
+}
+header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+
+.header-alarm {
+  font-size: 36px;
+  line-height: 1;
+  filter: drop-shadow(0 0 10px rgba(244,168,36,0.7));
+  animation: pulse-clock 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes pulse-clock {
+  0%,100% { filter: drop-shadow(0 0 8px rgba(244,168,36,0.5)); }
+  50%      { filter: drop-shadow(0 0 18px rgba(244,168,36,0.9)); }
+}
+
+.header-text h1 {
+  font-family: var(--font-d);
+  font-size: 1.9rem;
+  font-weight: 900;
+  color: var(--gold);
+  letter-spacing: 0.01em;
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(244,168,36,0.35);
+}
+.header-text .subtitle {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+.header-meta {
+  margin-left: auto;
+  text-align: right;
+  line-height: 1.5;
+}
+.header-meta .time-display {
+  font-family: var(--font-d);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(196,32,64,0.5);
+  animation: blink-colon 1s step-end infinite;
+}
+@keyframes blink-colon {
+  0%,100% { opacity: 1; }
+  50%      { opacity: 0.4; }
+}
+.header-meta .date-label {
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* ═══════════ MAIN LAYOUT ═══════════ */
+.main-wrapper {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+.main-layout {
+  display: grid;
+  grid-template-columns: 1fr 310px;
+  height: calc(100vh - 72px - 260px);
+  min-height: 520px;
+}
+
+/* ═══════════ GRAPH PANEL ═══════════ */
+.graph-panel {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid var(--border);
+  overflow: hidden;
+  position: relative;
+}
+
+.controls-bar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  background: rgba(10,22,40,0.95);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.ctrl-label {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+.sep { width: 1px; height: 18px; background: var(--border); flex-shrink: 0; }
+
+.btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  font-family: var(--font-b);
+  font-size: 0.65rem;
+  padding: 4px 9px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.18s;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
+  outline: none;
+}
+.btn:hover { border-color: var(--gold-dim); color: var(--gold); background: var(--bg-hover); }
+.btn.active { background: rgba(244,168,36,0.12); border-color: var(--gold); color: var(--gold); }
+
+#graph-svg {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  cursor: grab;
+  display: block;
+}
+#graph-svg:active { cursor: grabbing; }
+
+.graph-watermark {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-d);
+  font-size: 0.6rem;
+  color: rgba(244,168,36,0.12);
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ═══════════ RIGHT PANEL ═══════════ */
+.right-panel {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--bg-panel);
+}
+
+/* — Node card — */
+.node-card {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  min-height: 164px;
+}
+.node-card-title {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+}
+.nc-empty {
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  text-align: center;
+}
+.nc-empty .icon { font-size: 26px; margin-bottom: 7px; opacity: 0.35; }
+.nc-empty p { font-size: 0.72rem; font-style: italic; line-height: 1.5; }
+.nc-body { display: none; }
+.nc-body.show { display: block; }
+
+.nc-name {
+  font-family: var(--font-d);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.nc-community {
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+.nc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.stat-box {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 5px 6px;
+  text-align: center;
+}
+.stat-box .slabel { font-size: 0.55rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 2px; }
+.stat-box .sval   { font-size: 1.05rem; color: var(--ice); font-weight: 700; }
+.nc-neighbors {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+.nc-neighbors strong { color: var(--text); }
+
+/* — Legend — */
+.legend-section {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+.legend-section h3, .ranking-section h3 {
+  font-size: 0.6rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  margin-bottom: 8px;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  padding: 3px 4px;
+  border-radius: 3px;
+  transition: background 0.15s;
+  border: 1px solid transparent;
+}
+.legend-item:hover { background: rgba(255,255,255,0.03); border-color: var(--border); }
+.legend-item.active { background: rgba(244,168,36,0.06); border-color: var(--gold-dim); }
+.legend-dot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.legend-name { color: var(--text); flex: 1; }
+.legend-count { color: var(--text-dim); font-size: 0.6rem; }
+
+/* — Rankings — */
+.ranking-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding-top: 11px;
+}
+.ranking-section h3 { padding: 0 16px; }
+
+.tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+.tab {
+  flex: 1;
+  padding: 7px 2px;
+  font-size: 0.6rem;
+  text-align: center;
+  cursor: pointer;
+  color: var(--text-dim);
+  border-bottom: 2px solid transparent;
+  transition: all 0.18s;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  user-select: none;
+}
+.tab:hover { color: var(--text-muted); }
+.tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+
+.ranking-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 6px 0;
+}
+.ranking-list::-webkit-scrollbar { width: 3px; }
+.ranking-list::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+.rk-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  cursor: pointer;
+  transition: background 0.13s;
+  border-left: 2px solid transparent;
+}
+.rk-item:hover { background: rgba(244,168,36,0.04); border-left-color: var(--gold-dim); }
+.rk-item.hl    { background: rgba(244,168,36,0.09); border-left-color: var(--gold); }
+.rk-num  { font-size: 0.6rem; color: var(--text-dim); width: 16px; text-align: right; flex-shrink: 0; }
+.rk-dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.rk-name { flex: 1; font-size: 0.68rem; color: var(--text); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.rk-bar-wrap { width: 50px; flex-shrink: 0; }
+.rk-bar-bg { height: 3px; background: var(--bg); border-radius: 2px; overflow: hidden; }
+.rk-bar    { height: 100%; border-radius: 2px; background: linear-gradient(90deg, var(--ice-dim), var(--ice)); }
+.rk-val  { font-size: 0.6rem; color: var(--text-muted); width: 26px; text-align: right; flex-shrink: 0; }
+
+/* ═══════════ INTERPRETATION ═══════════ */
+.interpretation {
+  position: relative;
+  z-index: 10;
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  padding: 26px 32px 30px;
+}
+.interpretation::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-dim), transparent);
+}
+.interp-header {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.interp-header h2 {
+  font-family: var(--font-d);
+  font-size: 1.1rem;
+  color: var(--gold);
+  letter-spacing: 0.01em;
+}
+.interp-header .film-tag {
+  font-size: 0.62rem;
+  color: var(--text-dim);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+.interp-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.interp-block h4 {
+  font-size: 0.65rem;
+  color: var(--ice);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 7px;
+  padding-left: 9px;
+  border-left: 2px solid var(--ice-dim);
+}
+.interp-block p {
+  font-size: 0.74rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.interp-block em { color: var(--gold); font-style: normal; }
+.interp-block strong { color: var(--text); }
+
+/* ═══════════ TOOLTIP ═══════════ */
+#tooltip {
+  position: fixed;
+  background: var(--bg-card);
+  border: 1px solid var(--border-lt);
+  border-radius: 3px;
+  padding: 8px 12px;
+  font-size: 0.7rem;
+  color: var(--text);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.12s;
+  z-index: 9999;
+  box-shadow: var(--shadow);
+  max-width: 220px;
+  line-height: 1.55;
+}
+#tooltip.show { opacity: 1; }
+#tooltip strong { color: var(--gold); display: block; margin-bottom: 3px; font-size: 0.8rem; }
+#tooltip .tt-row { color: var(--text-muted); }
+#tooltip .tt-row span { color: var(--text); }
+
+/* ═══════════ GRAPH ELEMENTS (D3) ═══════════ */
+.link-line { transition: stroke-opacity 0.2s; }
+.node-circle { transition: stroke 0.15s, fill-opacity 0.2s; cursor: pointer; }
+.node-label { pointer-events: none; user-select: none; }
+.node-ring { pointer-events: none; }
+
+/* ═══════════ STATS BANNER ═══════════ */
+.stats-banner {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  display: flex;
+  gap: 14px;
+  z-index: 5;
+  pointer-events: none;
+}
+.sb-item {
+  text-align: center;
+}
+.sb-val {
+  font-family: var(--font-d);
+  font-size: 1.1rem;
+  color: var(--gold);
+  line-height: 1;
+}
+.sb-lbl {
+  font-size: 0.55rem;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* ═══════════ SCROLLBAR ═══════════ */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-alarm">⏰</div>
+  <div class="header-text">
+    <h1>Dzień Świstaka</h1>
+    <div class="subtitle">Groundhog Day (1993) &nbsp;·&nbsp; Analiza Sieci Postaci</div>
+  </div>
+  <div class="header-meta">
+    <div class="time-display" id="clock-display">06:00</div>
+    <div class="date-label">2 Lutego · Punxsutawney, PA</div>
+  </div>
+</header>
+
+<div class="main-wrapper">
+<div class="main-layout">
+
+  <!-- LEFT: GRAPH -->
+  <div class="graph-panel">
+    <div class="controls-bar">
+      <span class="ctrl-label">Tryb:</span>
+      <button class="btn active" id="btn-force" onclick="setMode('force')">Siłowy</button>
+      <button class="btn" id="btn-comm"  onclick="setMode('community')">Społeczności</button>
+      <div class="sep"></div>
+      <span class="ctrl-label">Etykiety:</span>
+      <button class="btn active" id="btn-labels" onclick="toggleLabels()">Widoczne</button>
+      <div class="sep"></div>
+      <span class="ctrl-label">Peryferyjne:</span>
+      <button class="btn active" id="btn-periph" onclick="togglePeriph()">Pokaż</button>
+      <div class="sep"></div>
+      <button class="btn" onclick="zoomIn()">＋ Zoom</button>
+      <button class="btn" onclick="zoomOut()">－ Zoom</button>
+      <button class="btn" onclick="resetZoom()">↺ Reset</button>
+    </div>
+
+    <svg id="graph-svg"></svg>
+
+    <!-- Stats corner -->
+    <div class="stats-banner">
+      <div class="sb-item"><div class="sb-val" id="sb-nodes">—</div><div class="sb-lbl">Węzły</div></div>
+      <div class="sb-item"><div class="sb-val" id="sb-edges">—</div><div class="sb-lbl">Krawędzie</div></div>
+      <div class="sb-item"><div class="sb-val" id="sb-density">—</div><div class="sb-lbl">Gęstość</div></div>
+    </div>
+    <div class="graph-watermark">02.02 — Pętla Czasowa — 02.02 — Pętla Czasowa — 02.02</div>
+  </div>
+
+  <!-- RIGHT: PANELS -->
+  <div class="right-panel">
+
+    <!-- Node card -->
+    <div class="node-card">
+      <div class="node-card-title">▸ Karta Węzła</div>
+      <div id="nc-empty" class="nc-empty">
+        <div class="icon">🎯</div>
+        <p>Kliknij na węzeł<br>aby zobaczyć szczegóły</p>
+      </div>
+      <div id="nc-body" class="nc-body">
+        <div class="nc-name" id="nc-name">—</div>
+        <div class="nc-community" id="nc-comm">—</div>
+        <div class="nc-stats">
+          <div class="stat-box"><span class="slabel">Stopień</span><span class="sval" id="nc-deg">0</span></div>
+          <div class="stat-box"><span class="slabel">Siła</span><span class="sval" id="nc-str">0</span></div>
+          <div class="stat-box"><span class="slabel">Pośredn.</span><span class="sval" id="nc-bet">0</span></div>
+        </div>
+        <div class="nc-neighbors" id="nc-neighbors"></div>
+      </div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend-section">
+      <h3>▸ Społeczności (Louvain)</h3>
+      <div id="legend-container"></div>
+    </div>
+
+    <!-- Rankings -->
+    <div class="ranking-section">
+      <h3>▸ Ranking Postaci</h3>
+      <div class="tabs">
+        <div class="tab active" onclick="setTab('deg')">Stopień</div>
+        <div class="tab" onclick="setTab('str')">Siła</div>
+        <div class="tab" onclick="setTab('bet')">Centralność</div>
+      </div>
+      <div class="ranking-list" id="ranking-list"></div>
+    </div>
+
+  </div>
+</div><!-- .main-layout -->
+
+<!-- INTERPRETATION -->
+<div class="interpretation">
+  <div class="interp-header">
+    <h2>Interpretacja Struktury Sieci</h2>
+    <span class="film-tag">Social Network Analysis · GEXF · D3.js v7</span>
+  </div>
+  <div class="interp-grid">
+    <div class="interp-block">
+      <h4>Centralność &amp; Pętla Phila</h4>
+      <p>
+        <em>Phil Connors</em> jest absolutnym centrum sieci — jego stopień wynosi <strong>32 krawędzie</strong>, a siła powiązań przekracza <strong>134</strong>. Dominująca krawędź <em>PHIL–RITA</em> (waga 34) to matematyczny ślad romantycznej obsesji: Phil i Rita współwystępują w 34 różnych kontekstach scenariuszowych — więcej niż jakakolwiek inna para. To struktura „gwiazdy" (hub-and-spoke) odzwierciedlająca, że Phil jako jedyna postać zapamiętuje każde powtórzenie pętli.
+      </p>
+    </div>
+    <div class="interp-block">
+      <h4>Larry jako Broker Informacyjny</h4>
+      <p>
+        <em>Larry</em> (kamerzysta) zajmuje wyjątkową pozycję brokera: silne krawędzie zarówno z <strong>Philem (14)</strong>, jak i z <strong>Ritą (13)</strong> oraz <strong>Busterem (5)</strong>. Jako jedyna osoba stale obecna przy obu protagonistach, Larry pełni rolę łącznika między grupami społecznymi — jego wysoka centralność pośrednicząca wynika z bycia „mostem" między pętlą Phila a ceremonią Dnia Świstaka. Paradoksalnie Larry nic nie pamięta, a sieć to odnotowuje.
+      </p>
+    </div>
+    <div class="interp-block">
+      <h4>Metatekstualność Scenariusza</h4>
+      <p>
+        Aż ~45% węzłów to <em>nie postacie</em>, lecz wskazówki scenariuszowe: <strong>„SAME SCENE – ANOTHER DAY"</strong>, <strong>„HIS POV"</strong>, <strong>„CLOSE UP – CLOCK"</strong>, <strong>„INSERT"</strong>. Ich obecność w sieci współwystąpień ujawnia strukturę dramaturgiczną — scenariusz Harold Ramisa używa powtórzeń przestrzennych i POV-shotów jako technicznych markerów pętli. Sieć dosłownie wizualizuje mechanizm narracyjny filmu, a nie tylko jego świat fikcyjny.
+      </p>
+    </div>
+  </div>
+</div>
+</div><!-- .main-wrapper -->
+
+<div id="tooltip"></div>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+//  DATA
+// ════════════════════════════════════════════════════════════════
+const RAW_NODES = [
+  {id:"PHIL",                     label:"PHIL",                     comm:0, size:40.0000},
+  {id:"RITA",                     label:"RITA",                     comm:1, size:22.1875},
+  {id:"LARRY",                    label:"LARRY",                    comm:2, size:14.6875},
+  {id:"RALPH",                    label:"RALPH",                    comm:0, size:12.8125},
+  {id:"NED",                      label:"NED",                      comm:2, size:16.5625},
+  {id:"NANCY",                    label:"NANCY",                    comm:1, size:11.8750},
+  {id:"DEEJAY",                   label:"DEEJAY",                   comm:3, size:11.8750},
+  {id:"INSERT",                   label:"INSERT",                   comm:0, size:10.9375},
+  {id:"MARY",                     label:"MARY",                     comm:3, size:11.8750},
+  {id:"STEPHANIE",                label:"STEPHANIE",                comm:0, size:10.9375},
+  {id:"SIDEKICK",                 label:"SIDEKICK",                 comm:3, size:19.3750},
+  {id:"BUSTER",                   label:"BUSTER",                   comm:2, size:18.4375},
+  {id:"CHUBBY MAN",               label:"CHUBBY MAN",               comm:0, size:10.9375},
+  {id:"HAWLEY",                   label:"HAWLEY",                   comm:0, size:10.9375},
+  {id:"BOTH DEEJAYS",             label:"BOTH DEEJAYS",             comm:3, size:11.8750},
+  {id:"HIS POV",                  label:"HIS POV",                  comm:3, size:11.8750},
+  {id:"PHIL AND SIDEKICK",        label:"PHIL AND SIDEKICK",        comm:0, size:10.9375},
+  {id:"WAITER",                   label:"WAITER",                   comm:2, size:12.8125},
+  {id:"GUS",                      label:"GUS",                      comm:0, size:11.8750},
+  {id:"THEIR POV",                label:"THEIR POV",                comm:0, size:10.9375},
+  {id:"PHIL'S POV",               label:"PHIL'S POV",               comm:2, size:11.8750},
+  {id:"SAME SCENE - ANOTHER DAY", label:"SAME SCENE - ANOTHER DAY", comm:1, size:11.8750},
+  {id:"ALEX",                     label:"ALEX",                     comm:0, size:11.8750},
+  {id:"CONTESTANT",               label:"CONTESTANT",               comm:0, size:11.8750},
+  {id:"LIBRARIAN",                label:"LIBRARIAN",                comm:2, size:11.8750},
+  {id:"FIRST OFFICIAL",           label:"FIRST OFFICIAL",           comm:2, size:10.9375},
+  {id:"DORIS",                    label:"DORIS",                    comm:1, size:13.7500},
+  {id:"FRED",                     label:"FRED",                     comm:1, size:13.7500},
+  {id:"LATER",                    label:"LATER",                    comm:1, size:12.8125},
+  {id:"NURSE",                    label:"NURSE",                    comm:0, size:10.9375},
+  {id:"COP",                      label:"COP",                      comm:0, size:10.9375},
+  {id:"DOG WALKER",               label:"DOG WALKER",               comm:0, size:10.9375},
+  {id:"JOEY",                     label:"JOEY",                     comm:0, size:10.9375},
+  {id:"MIKE AND SUE",             label:"MIKE AND SUE",             comm:0, size:10.9375},
+  {id:"OTHER OFFICIAL",           label:"OTHER OFFICIAL",           comm:2, size:10.9375},
+  {id:"BARTENDER",                label:"BARTENDER",                comm:1, size:10.9375},
+  {id:"CLOSE UP - CLOCK",         label:"CLOSE UP - CLOCK",         comm:2, size:10.9375},
+  {id:"LEO",                      label:"LEO",                      comm:3, size:10.9375},
+  {id:"A LADY",                   label:"A LADY",                   comm:2, size:10.9375},
+  {id:"A MAN",                    label:"A MAN",                    comm:2, size:10.9375},
+  {id:"FLORIST",                  label:"FLORIST",                  comm:2, size:10.9375},
+  {id:"CLOSE UP - THE CLOCK",     label:"CLOSE UP - THE CLOCK",     comm:3, size:10.0000},
+  {id:"LITTLE BOY",               label:"LITTLE BOY",               comm:9, size:10.9375},
+  {id:"LITTLE GIRL",              label:"LITTLE GIRL",              comm:9, size:10.9375},
+  {id:"T EACHER",                 label:"T EACHER",                 comm:9, size:10.9375},
+  {id:"TEACHER",                  label:"TEACHER",                  comm:9, size:10.9375},
+  {id:"A SIGN",                   label:"A SIGN",                   comm:9, size:10.0000},
+  {id:"PATROLMAN",                label:"PATROLMAN",                comm:9, size:10.0000},
+  {id:"INSERT - A THICK BOOK",    label:"INSERT - A THICK BOOK",    comm:9, size:10.0000},
+  {id:"PASSERBY",                 label:"PASSERBY",                 comm:9, size:10.0000},
+  {id:"PSYCHOLOGIST",             label:"PSYCHOLOGIST",             comm:9, size:10.0000},
+  {id:"SCIENTIST",                label:"SCIENTIST",                comm:9, size:10.0000},
+  {id:"V RALPH",                  label:"V RALPH",                  comm:9, size:10.0000},
+  {id:"POLICE CAR",               label:"POLICE CAR",               comm:9, size:10.0000},
+  {id:"WOMAN",                    label:"WOMAN",                    comm:9, size:10.0000},
+  {id:"FIRST GUARD",              label:"FIRST GUARD",              comm:9, size:10.0000},
+  {id:"SALESMAN",                 label:"SALESMAN",                 comm:9, size:10.0000},
+  {id:"LARAINE",                  label:"LARAINE",                  comm:9, size:10.0000},
+  {id:"ANGIE",                    label:"ANGIE",                    comm:9, size:10.0000},
+  {id:"ALEX TREBECK",             label:"ALEX TREBECK",             comm:9, size:10.0000},
+  {id:"PIZZA GUY",                label:"PIZZA GUY",                comm:9, size:10.0000},
+  {id:"MARIE",                    label:"MARIE",                    comm:9, size:10.0000},
+  {id:"JERRY",                    label:"JERRY",                    comm:9, size:10.0000},
+  {id:"ANDY",                     label:"ANDY",                     comm:9, size:10.0000},
+  {id:"BUD",                      label:"BUD",                      comm:9, size:10.0000},
+  {id:"GLOW",                     label:"GLOW",                     comm:9, size:10.0000},
+];
+
+const RAW_EDGES = [
+  {source:"PHIL",    target:"RITA",                    weight:34},
+  {source:"PHIL",    target:"LARRY",                   weight:14},
+  {source:"PHIL",    target:"RALPH",                   weight:7},
+  {source:"PHIL",    target:"NED",                     weight:6},
+  {source:"PHIL",    target:"BUSTER",                  weight:6},
+  {source:"PHIL",    target:"NANCY",                   weight:5},
+  {source:"PHIL",    target:"DEEJAY",                  weight:4},
+  {source:"PHIL",    target:"INSERT",                  weight:4},
+  {source:"PHIL",    target:"MARY",                    weight:4},
+  {source:"PHIL",    target:"SIDEKICK",                weight:4},
+  {source:"PHIL",    target:"STEPHANIE",               weight:3},
+  {source:"PHIL",    target:"CHUBBY MAN",              weight:3},
+  {source:"PHIL",    target:"COP",                     weight:2},
+  {source:"PHIL",    target:"DOG WALKER",              weight:2},
+  {source:"PHIL",    target:"JOEY",                    weight:2},
+  {source:"PHIL",    target:"MIKE AND SUE",            weight:2},
+  {source:"PHIL",    target:"HAWLEY",                  weight:2},
+  {source:"PHIL",    target:"BOTH DEEJAYS",            weight:2},
+  {source:"PHIL",    target:"HIS POV",                 weight:2},
+  {source:"PHIL",    target:"PHIL AND SIDEKICK",       weight:2},
+  {source:"PHIL",    target:"WAITER",                  weight:2},
+  {source:"PHIL",    target:"GUS",                     weight:2},
+  {source:"PHIL",    target:"THEIR POV",               weight:2},
+  {source:"PHIL",    target:"PHIL'S POV",              weight:2},
+  {source:"PHIL",    target:"SAME SCENE - ANOTHER DAY",weight:2},
+  {source:"PHIL",    target:"ALEX",                    weight:2},
+  {source:"PHIL",    target:"CONTESTANT",              weight:2},
+  {source:"PHIL",    target:"LIBRARIAN",               weight:2},
+  {source:"PHIL",    target:"DORIS",                   weight:2},
+  {source:"PHIL",    target:"FRED",                    weight:2},
+  {source:"PHIL",    target:"LATER",                   weight:2},
+  {source:"PHIL",    target:"NURSE",                   weight:2},
+  {source:"RITA",    target:"LARRY",                   weight:13},
+  {source:"RITA",    target:"BUSTER",                  weight:5},
+  {source:"RITA",    target:"NED",                     weight:2},
+  {source:"RITA",    target:"WAITER",                  weight:2},
+  {source:"RITA",    target:"NANCY",                   weight:2},
+  {source:"RITA",    target:"SAME SCENE - ANOTHER DAY",weight:3},
+  {source:"RITA",    target:"DORIS",                   weight:2},
+  {source:"RITA",    target:"FRED",                    weight:2},
+  {source:"RITA",    target:"LATER",                   weight:2},
+  {source:"RITA",    target:"BARTENDER",               weight:2},
+  {source:"RITA",    target:"SIDEKICK",                weight:2},
+  {source:"RITA",    target:"RALPH",                   weight:1},
+  {source:"SIDEKICK",target:"DEEJAY",                  weight:5},
+  {source:"SIDEKICK",target:"BOTH DEEJAYS",            weight:2},
+  {source:"SIDEKICK",target:"HIS POV",                 weight:2},
+  {source:"SIDEKICK",target:"MARY",                    weight:1},
+  {source:"SIDEKICK",target:"DORIS",                   weight:1},
+  {source:"SIDEKICK",target:"FRED",                    weight:1},
+  {source:"SIDEKICK",target:"LATER",                   weight:1},
+  {source:"SIDEKICK",target:"LEO",                     weight:1},
+  {source:"BUSTER",  target:"LARRY",                   weight:5},
+  {source:"BUSTER",  target:"FIRST OFFICIAL",          weight:3},
+  {source:"BUSTER",  target:"OTHER OFFICIAL",          weight:2},
+  {source:"BUSTER",  target:"NED",                     weight:1},
+  {source:"BUSTER",  target:"CLOSE UP - CLOCK",        weight:1},
+  {source:"BUSTER",  target:"PHIL'S POV",              weight:1},
+  {source:"BUSTER",  target:"LIBRARIAN",               weight:1},
+  {source:"LARRY",   target:"NED",                     weight:2},
+  {source:"LARRY",   target:"WAITER",                  weight:2},
+  {source:"RALPH",   target:"GUS",                     weight:2},
+  {source:"NED",     target:"A LADY",                  weight:1},
+  {source:"NED",     target:"A MAN",                   weight:1},
+  {source:"NED",     target:"FLORIST",                 weight:1},
+  {source:"ALEX",    target:"CONTESTANT",              weight:2},
+  {source:"DORIS",   target:"FRED",                    weight:2},
+  {source:"LITTLE BOY",target:"LITTLE GIRL",           weight:1},
+  {source:"T EACHER",target:"TEACHER",                 weight:1},
+];
+
+// ════════════════════════════════════════════════════════════════
+//  COMMUNITY CONFIG
+// ════════════════════════════════════════════════════════════════
+const COMM_CFG = {
+  0: { name:"Pętla Phila",          desc:"Protagonista i jego orbit",   color:"#DD72CC" },
+  1: { name:"Świat Rity",           desc:"Partnerka i jej krąg",        color:"#44CC60" },
+  2: { name:"Ceremonia Świstaka",   desc:"Oficjele i mieszkańcy",       color:"#9B52D0" },
+  3: { name:"Ekipa Radiowa",        desc:"DJ i asystenci",              color:"#A8CC30" },
+  9: { name:"Postacie Epizodyczne", desc:"Peryferyjne / izolowane",     color:"#3A5870" },
+};
+function commColor(c) {
+  return COMM_CFG[c] ? COMM_CFG[c].color : COMM_CFG[9].color;
+}
+function commName(c) {
+  return COMM_CFG[c] ? COMM_CFG[c].name : "Inne";
+}
+
+// ════════════════════════════════════════════════════════════════
+//  METRIC COMPUTATION
+// ════════════════════════════════════════════════════════════════
+function computeMetrics(nodes, edges) {
+  const degMap = {}, strMap = {}, adjMap = {};
+  nodes.forEach(n => { degMap[n.id] = 0; strMap[n.id] = 0; adjMap[n.id] = []; });
+
+  edges.forEach(e => {
+    const s = e.source, t = e.target, w = e.weight;
+    if (degMap[s] !== undefined) { degMap[s]++; strMap[s] += w; adjMap[s].push(t); }
+    if (degMap[t] !== undefined) { degMap[t]++; strMap[t] += w; adjMap[t].push(s); }
+  });
+
+  // Brandes betweenness
+  const ids = nodes.map(n => n.id);
+  const betMap = {};
+  ids.forEach(id => { betMap[id] = 0; });
+
+  ids.forEach(src => {
+    const stack = [], pred = {}, sigma = {}, dist = {}, delta = {};
+    ids.forEach(id => { pred[id] = []; sigma[id] = 0; dist[id] = -1; delta[id] = 0; });
+    sigma[src] = 1; dist[src] = 0;
+    const queue = [src];
+
+    while (queue.length) {
+      const v = queue.shift();
+      stack.push(v);
+      (adjMap[v] || []).forEach(w => {
+        if (dist[w] < 0) { queue.push(w); dist[w] = dist[v] + 1; }
+        if (dist[w] === dist[v] + 1) { sigma[w] += sigma[v]; pred[w].push(v); }
+      });
+    }
+    while (stack.length) {
+      const w = stack.pop();
+      pred[w].forEach(v => {
+        delta[v] += (sigma[v] / sigma[w]) * (1 + delta[w]);
+      });
+      if (w !== src) betMap[w] += delta[w];
+    }
+  });
+
+  return { deg: degMap, str: strMap, bet: betMap };
+}
+
+// ════════════════════════════════════════════════════════════════
+//  D3 SETUP
+// ════════════════════════════════════════════════════════════════
+let showLabels = true;
+let showPeriph  = true;
+let currentMode = 'force';
+let currentTab  = 'deg';
+let selectedNode = null;
+let filterComm   = null;
+
+const metrics = computeMetrics(RAW_NODES, RAW_EDGES);
+
+// Clone nodes/edges for simulation
+const simNodes = RAW_NODES.map(n => ({...n,
+  deg: metrics.deg[n.id] || 0,
+  str: metrics.str[n.id] || 0,
+  bet: metrics.bet[n.id] || 0,
+  periph: n.comm === 9
+}));
+const simEdges = RAW_EDGES.map(e => ({...e}));
+
+// Scales
+const sizeScale = d3.scaleSqrt().domain([10, 40]).range([4.5, 22]);
+const wScale    = d3.scaleLinear().domain([1, 34]).range([0.6, 5.5]);
+const opScale   = d3.scaleLinear().domain([1, 34]).range([0.2, 0.85]);
+
+const svg   = d3.select("#graph-svg");
+const svgEl = document.getElementById("graph-svg");
+
+function getSvgSize() {
+  return { w: svgEl.clientWidth || 800, h: svgEl.clientHeight || 500 };
+}
+
+let { w: W, h: H } = getSvgSize();
+
+// Zoom
+const zoomBehavior = d3.zoom()
+  .scaleExtent([0.08, 10])
+  .on("zoom", e => gMain.attr("transform", e.transform));
+svg.call(zoomBehavior);
+svg.on("click", function(e) {
+  if (e.target === svgEl) deselectNode();
+});
+
+// Defs
+const defs = svg.append("defs");
+// Glow filter for selected node
+const glow = defs.append("filter").attr("id","glow-gold");
+glow.append("feGaussianBlur").attr("stdDeviation","4").attr("result","blur");
+const merge = glow.append("feMerge");
+merge.append("feMergeNode").attr("in","blur");
+merge.append("feMergeNode").attr("in","SourceGraphic");
+
+// Main group
+const gMain = svg.append("g");
+const gLinks = gMain.append("g").attr("class","links");
+const gNodes = gMain.append("g").attr("class","nodes");
+
+// ── Simulation ──────────────────────────────────────────────
+const simulation = d3.forceSimulation(simNodes)
+  .force("link", d3.forceLink(simEdges)
+    .id(d => d.id)
+    .distance(d => {
+      const w = d.weight || 1;
+      if (w >= 20) return 55;
+      if (w >= 10) return 80;
+      if (w >= 5)  return 110;
+      return 150;
+    })
+    .strength(d => Math.min(0.9, (d.weight || 1) / 20))
+  )
+  .force("charge", d3.forceManyBody()
+    .strength(d => d.periph ? -20 : -220)
+    .theta(0.9)
+  )
+  .force("center", d3.forceCenter(W / 2, H / 2))
+  .force("collision", d3.forceCollide()
+    .radius(d => sizeScale(d.size) + (d.periph ? 2 : 5))
+    .iterations(2)
+  )
+  .force("radial_periph", d3.forceRadial(
+    () => Math.min(W, H) * 0.48, W / 2, H / 2
+  ).strength(d => d.periph ? 0.4 : 0))
+  .alphaDecay(0.025)
+  .velocityDecay(0.35);
+
+// ── Draw Links ──────────────────────────────────────────────
+const linkSel = gLinks.selectAll("line")
+  .data(simEdges)
+  .join("line")
+  .attr("class","link-line")
+  .attr("stroke", d => {
+    const sc = d.source.comm ?? 0;
+    const tc = d.target.comm ?? 0;
+    if (sc === tc) return commColor(sc);
+    return "#2A4878";
+  })
+  .attr("stroke-width", d => wScale(d.weight))
+  .attr("stroke-opacity", d => opScale(d.weight));
+
+// ── Draw Nodes ──────────────────────────────────────────────
+const nodeG = gNodes.selectAll("g.node-g")
+  .data(simNodes)
+  .join("g")
+  .attr("class","node-g")
+  .style("cursor","pointer")
+  .call(d3.drag()
+    .on("start", dragStart)
+    .on("drag",  dragged)
+    .on("end",   dragEnd)
+  )
+  .on("mouseenter", onNodeHover)
+  .on("mouseleave", onNodeLeave)
+  .on("click",      onNodeClick);
+
+// Outer ring (selected indicator)
+nodeG.append("circle")
+  .attr("class","node-ring")
+  .attr("r", d => sizeScale(d.size) + 5)
+  .attr("fill","none")
+  .attr("stroke", d => commColor(d.comm))
+  .attr("stroke-width", 1.5)
+  .attr("stroke-opacity", 0)
+  .attr("stroke-dasharray","3,2");
+
+// Main circle
+nodeG.append("circle")
+  .attr("class","node-circle")
+  .attr("r", d => sizeScale(d.size))
+  .attr("fill", d => commColor(d.comm))
+  .attr("fill-opacity", d => d.periph ? 0.45 : 0.85)
+  .attr("stroke", d => d3.color(commColor(d.comm)).brighter(0.8).toString())
+  .attr("stroke-width", d => d.periph ? 0.5 : 1.2)
+  .attr("stroke-opacity", 0.7);
+
+// Labels
+nodeG.append("text")
+  .attr("class","node-label")
+  .attr("text-anchor","middle")
+  .attr("dy", d => sizeScale(d.size) + 11)
+  .text(d => d.deg >= 2 && !d.periph ? d.label : "")
+  .attr("font-family","'Courier Prime', monospace")
+  .attr("font-size", d => d.id === "PHIL" ? "10px" : "8px")
+  .attr("fill", d => d.id === "PHIL" ? "#F4A824" : d.id === "RITA" ? "#44CC60" : "#7090B8")
+  .attr("font-weight", d => d.id === "PHIL" || d.id === "RITA" ? "700" : "400")
+  .attr("opacity", 1);
+
+// Simulation tick
+simulation.on("tick", () => {
+  linkSel
+    .attr("x1", d => d.source.x)
+    .attr("y1", d => d.source.y)
+    .attr("x2", d => d.target.x)
+    .attr("y2", d => d.target.y);
+  nodeG.attr("transform", d => `translate(${d.x},${d.y})`);
+});
+
+// ════════════════════════════════════════════════════════════════
+//  INTERACTIONS
+// ════════════════════════════════════════════════════════════════
+const tooltip = document.getElementById("tooltip");
+
+function onNodeHover(e, d) {
+  if (selectedNode && selectedNode.id === d.id) return;
+  // Highlight connected nodes/links
+  const connected = new Set([d.id]);
+  simEdges.forEach(edge => {
+    const s = edge.source.id || edge.source;
+    const t = edge.target.id || edge.target;
+    if (s === d.id) connected.add(t);
+    if (t === d.id) connected.add(s);
+  });
+
+  nodeG.selectAll("circle.node-circle")
+    .attr("fill-opacity", n => connected.has(n.id) ? 0.95 : (n.periph ? 0.15 : 0.3))
+    .attr("stroke-opacity", n => connected.has(n.id) ? 1 : 0.2);
+
+  linkSel
+    .attr("stroke-opacity", ln => {
+      const s = ln.source.id || ln.source, t = ln.target.id || ln.target;
+      return (s === d.id || t === d.id) ? Math.min(1, opScale(ln.weight) * 2) : 0.05;
+    })
+    .attr("stroke-width", ln => {
+      const s = ln.source.id || ln.source, t = ln.target.id || ln.target;
+      return (s === d.id || t === d.id) ? wScale(ln.weight) * 1.6 : wScale(ln.weight) * 0.5;
+    });
+
+  // Tooltip
+  const neighbors = [];
+  simEdges.forEach(edge => {
+    const s = edge.source.id || edge.source, t = edge.target.id || edge.target;
+    if (s === d.id) neighbors.push({n: t, w: edge.weight});
+    if (t === d.id) neighbors.push({n: s, w: edge.weight});
+  });
+  neighbors.sort((a,b) => b.w - a.w);
+  const topN = neighbors.slice(0, 3).map(x => `${x.n} (${x.w})`).join(", ");
+
+  tooltip.innerHTML = `<strong>${d.label}</strong>
+    <span class="tt-row">Społeczność: <span>${commName(d.comm)}</span></span>
+    <span class="tt-row">Stopień: <span>${d.deg}</span> · Siła: <span>${d.str}</span></span>
+    ${topN ? `<span class="tt-row">Top sąsiedzi: <span>${topN}</span></span>` : ""}`;
+
+  tooltip.classList.add("show");
+  moveTooltip(e);
+}
+
+function onNodeLeave() {
+  if (!selectedNode) {
+    resetHighlight();
+  } else {
+    highlightSelected(selectedNode);
+  }
+  tooltip.classList.remove("show");
+}
+
+function onNodeClick(e, d) {
+  e.stopPropagation();
+  if (selectedNode && selectedNode.id === d.id) {
+    deselectNode(); return;
+  }
+  selectedNode = d;
+  highlightSelected(d);
+  showNodeCard(d);
+  highlightRankingItem(d.id);
+  tooltip.classList.remove("show");
+}
+
+function highlightSelected(d) {
+  const connected = new Set([d.id]);
+  simEdges.forEach(edge => {
+    const s = edge.source.id || edge.source, t = edge.target.id || edge.target;
+    if (s === d.id) connected.add(t);
+    if (t === d.id) connected.add(s);
+  });
+
+  nodeG.selectAll("circle.node-ring")
+    .attr("stroke-opacity", n => n.id === d.id ? 0.9 : 0)
+    .attr("stroke-dasharray", n => n.id === d.id ? "none" : "3,2");
+
+  nodeG.selectAll("circle.node-circle")
+    .attr("fill-opacity", n => {
+      if (n.id === d.id) return 1;
+      if (connected.has(n.id)) return 0.85;
+      return n.periph ? 0.1 : 0.2;
+    });
+
+  linkSel
+    .attr("stroke-opacity", ln => {
+      const s = ln.source.id || ln.source, t = ln.target.id || ln.target;
+      return (s === d.id || t === d.id) ? opScale(ln.weight) * 1.3 : 0.04;
+    })
+    .attr("stroke-width", ln => {
+      const s = ln.source.id || ln.source, t = ln.target.id || ln.target;
+      return (s === d.id || t === d.id) ? wScale(ln.weight) * 1.5 : wScale(ln.weight) * 0.4;
+    });
+}
+
+function deselectNode() {
+  selectedNode = null;
+  resetHighlight();
+  hideNodeCard();
+  document.querySelectorAll(".rk-item").forEach(el => el.classList.remove("hl"));
+}
+
+function resetHighlight() {
+  nodeG.selectAll("circle.node-ring").attr("stroke-opacity", 0);
+  nodeG.selectAll("circle.node-circle")
+    .attr("fill-opacity", d => d.periph ? 0.45 : 0.85)
+    .attr("stroke-opacity", 0.7);
+  linkSel
+    .attr("stroke-opacity", d => opScale(d.weight))
+    .attr("stroke-width",   d => wScale(d.weight));
+}
+
+function moveTooltip(e) {
+  const x = e.clientX + 14, y = e.clientY + 14;
+  tooltip.style.left = x + "px";
+  tooltip.style.top  = y + "px";
+}
+
+document.addEventListener("mousemove", e => {
+  if (tooltip.classList.contains("show")) moveTooltip(e);
+});
+
+// ════════════════════════════════════════════════════════════════
+//  NODE CARD
+// ════════════════════════════════════════════════════════════════
+function showNodeCard(d) {
+  document.getElementById("nc-empty").style.display = "none";
+  const body = document.getElementById("nc-body");
+  body.classList.add("show");
+
+  const col = commColor(d.comm);
+  document.getElementById("nc-name").textContent = d.label;
+  document.getElementById("nc-name").style.color = col;
+  document.getElementById("nc-comm").textContent = commName(d.comm);
+  document.getElementById("nc-comm").style.color = col;
+  document.getElementById("nc-deg").textContent  = d.deg;
+  document.getElementById("nc-str").textContent  = d.str;
+  document.getElementById("nc-bet").textContent  = Math.round(d.bet);
+
+  // Neighbors
+  const nbrs = [];
+  simEdges.forEach(edge => {
+    const s = edge.source.id || edge.source, t = edge.target.id || edge.target;
+    if (s === d.id) nbrs.push({n: t, w: edge.weight});
+    if (t === d.id) nbrs.push({n: s, w: edge.weight});
+  });
+  nbrs.sort((a,b) => b.w - a.w);
+  const top = nbrs.slice(0,5).map(x =>
+    `<strong style="color:${col}">${x.n}</strong><span style="color:var(--text-dim)"> ×${x.w}</span>`
+  ).join(", ");
+
+  document.getElementById("nc-neighbors").innerHTML =
+    nbrs.length ? `<strong>Połączenia:</strong> ${top}${nbrs.length > 5 ? ` …+${nbrs.length-5}` : ""}` : "Brak połączeń";
+}
+
+function hideNodeCard() {
+  document.getElementById("nc-empty").style.display = "";
+  document.getElementById("nc-body").classList.remove("show");
+}
+
+// ════════════════════════════════════════════════════════════════
+//  LEGEND
+// ════════════════════════════════════════════════════════════════
+function buildLegend() {
+  const counts = {};
+  simNodes.forEach(n => {
+    const c = n.comm === 9 ? 9 : n.comm;
+    counts[c] = (counts[c] || 0) + 1;
+  });
+
+  const container = document.getElementById("legend-container");
+  const order = [0,1,2,3,9];
+  order.forEach(c => {
+    const cfg = COMM_CFG[c];
+    if (!cfg) return;
+    const item = document.createElement("div");
+    item.className = "legend-item";
+    item.dataset.comm = c;
+    item.innerHTML = `
+      <div class="legend-dot" style="background:${cfg.color}"></div>
+      <span class="legend-name">${cfg.name}</span>
+      <span class="legend-count">${counts[c] || 0}</span>`;
+    item.addEventListener("click", () => filterByComm(c, item));
+    container.appendChild(item);
+  });
+}
+
+function filterByComm(c, item) {
+  const allItems = document.querySelectorAll(".legend-item");
+  if (filterComm === c) {
+    filterComm = null;
+    allItems.forEach(el => el.classList.remove("active"));
+    resetHighlight();
+    if (selectedNode) highlightSelected(selectedNode);
+  } else {
+    filterComm = c;
+    allItems.forEach(el => el.classList.remove("active"));
+    item.classList.add("active");
+    // Dim nodes not in community
+    nodeG.selectAll("circle.node-circle")
+      .attr("fill-opacity", d => {
+        const dc = d.comm === 9 ? 9 : d.comm;
+        return dc === c ? 0.9 : 0.08;
+      });
+    linkSel.attr("stroke-opacity", ln => {
+      const sc = (ln.source.comm ?? 9) === 9 ? 9 : (ln.source.comm ?? 9);
+      const tc = (ln.target.comm ?? 9) === 9 ? 9 : (ln.target.comm ?? 9);
+      return (sc === c && tc === c) ? opScale(ln.weight) : 0.04;
+    });
+  }
+}
+
+// ════════════════════════════════════════════════════════════════
+//  RANKINGS
+// ════════════════════════════════════════════════════════════════
+function buildRanking(tab) {
+  currentTab = tab;
+  // Update tab UI
+  document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(t => {
+    if ((tab === 'deg' && t.textContent === 'Stopień') ||
+        (tab === 'str' && t.textContent === 'Siła') ||
+        (tab === 'bet' && t.textContent === 'Centralność')) {
+      t.classList.add("active");
+    }
+  });
+
+  const sorted = [...simNodes]
+    .filter(n => !n.periph || n.deg > 0)
+    .sort((a,b) => b[tab] - a[tab])
+    .slice(0, 25);
+
+  const maxVal = sorted[0] ? sorted[0][tab] : 1;
+  const list = document.getElementById("ranking-list");
+  list.innerHTML = "";
+
+  sorted.forEach((d, i) => {
+    const val = Math.round(tab === 'bet' ? d[tab] : d[tab]);
+    const pct  = maxVal > 0 ? (d[tab] / maxVal * 100).toFixed(0) : 0;
+    const item = document.createElement("div");
+    item.className = "rk-item";
+    item.dataset.id = d.id;
+    if (selectedNode && selectedNode.id === d.id) item.classList.add("hl");
+    item.innerHTML = `
+      <span class="rk-num">${i+1}</span>
+      <span class="rk-dot" style="background:${commColor(d.comm)}"></span>
+      <span class="rk-name" title="${d.label}">${d.label}</span>
+      <div class="rk-bar-wrap">
+        <div class="rk-bar-bg"><div class="rk-bar" style="width:${pct}%"></div></div>
+      </div>
+      <span class="rk-val">${val}</span>`;
+    item.addEventListener("click", () => {
+      const nd = simNodes.find(n => n.id === d.id);
+      if (nd) { selectedNode = nd; highlightSelected(nd); showNodeCard(nd); highlightRankingItem(nd.id); }
+      // Zoom to node
+      const { w: sw, h: sh } = getSvgSize();
+      const tx = sw/2 - nd.x * 1.5, ty = sh/2 - nd.y * 1.5;
+      svg.transition().duration(600)
+        .call(zoomBehavior.transform, d3.zoomIdentity.translate(tx, ty).scale(1.5));
+    });
+    list.appendChild(item);
+  });
+}
+
+function highlightRankingItem(id) {
+  document.querySelectorAll(".rk-item").forEach(el => {
+    el.classList.toggle("hl", el.dataset.id === id);
+  });
+}
+
+function setTab(tab) { buildRanking(tab); }
+
+// ════════════════════════════════════════════════════════════════
+//  CONTROLS
+// ════════════════════════════════════════════════════════════════
+function setMode(mode) {
+  currentMode = mode;
+  document.getElementById("btn-force").classList.toggle("active", mode === "force");
+  document.getElementById("btn-comm").classList.toggle("active",  mode === "community");
+
+  if (mode === "community") {
+    // Cluster by community using radial forces
+    const { w: sw, h: sh } = getSvgSize();
+    const centers = {
+      0: {x: sw*0.35, y: sh*0.40},
+      1: {x: sw*0.62, y: sh*0.38},
+      2: {x: sw*0.48, y: sh*0.65},
+      3: {x: sw*0.75, y: sh*0.55},
+      9: {x: sw*0.18, y: sh*0.18},
+    };
+    simulation.force("x", d3.forceX(d => (centers[d.comm] || centers[9]).x).strength(0.18));
+    simulation.force("y", d3.forceY(d => (centers[d.comm] || centers[9]).y).strength(0.18));
+    simulation.force("charge").strength(d => d.periph ? -15 : -100);
+    simulation.alphaTarget(0.3).restart();
+    setTimeout(() => simulation.alphaTarget(0), 2500);
+  } else {
+    simulation.force("x", null);
+    simulation.force("y", null);
+    simulation.force("charge").strength(d => d.periph ? -20 : -220);
+    simulation.alphaTarget(0.3).restart();
+    setTimeout(() => simulation.alphaTarget(0), 2500);
+  }
+}
+
+function toggleLabels() {
+  showLabels = !showLabels;
+  document.getElementById("btn-labels").classList.toggle("active", showLabels);
+  document.getElementById("btn-labels").textContent = showLabels ? "Widoczne" : "Ukryte";
+  nodeG.selectAll("text.node-label")
+    .attr("opacity", showLabels ? 1 : 0);
+}
+
+function togglePeriph() {
+  showPeriph = !showPeriph;
+  document.getElementById("btn-periph").classList.toggle("active", showPeriph);
+  document.getElementById("btn-periph").textContent = showPeriph ? "Pokaż" : "Ukryj";
+  nodeG.filter(d => d.periph)
+    .style("opacity", showPeriph ? 1 : 0)
+    .style("pointer-events", showPeriph ? "all" : "none");
+  linkSel.filter(d => {
+    const s = d.source.periph, t = d.target.periph;
+    return s || t;
+  }).style("opacity", showPeriph ? 1 : 0);
+}
+
+function zoomIn()    { svg.transition().duration(350).call(zoomBehavior.scaleBy, 1.5); }
+function zoomOut()   { svg.transition().duration(350).call(zoomBehavior.scaleBy, 0.67); }
+function resetZoom() {
+  const { w: sw, h: sh } = getSvgSize();
+  svg.transition().duration(600)
+    .call(zoomBehavior.transform, d3.zoomIdentity.translate(sw/2, sh/2).scale(0.9).translate(-sw/2, -sh/2));
+}
+
+// ════════════════════════════════════════════════════════════════
+//  DRAG
+// ════════════════════════════════════════════════════════════════
+function dragStart(e, d) {
+  if (!e.active) simulation.alphaTarget(0.3).restart();
+  d.fx = d.x; d.fy = d.y;
+}
+function dragged(e, d)  { d.fx = e.x;  d.fy = e.y; }
+function dragEnd(e, d)  {
+  if (!e.active) simulation.alphaTarget(0);
+  d.fx = null; d.fy = null;
+}
+
+// ════════════════════════════════════════════════════════════════
+//  STATS BANNER
+// ════════════════════════════════════════════════════════════════
+function updateStats() {
+  const n = simNodes.length;
+  const e = simEdges.length;
+  const maxEdges = n * (n-1) / 2;
+  const density = maxEdges > 0 ? (e / maxEdges).toFixed(3) : "0";
+  document.getElementById("sb-nodes").textContent   = n;
+  document.getElementById("sb-edges").textContent   = e;
+  document.getElementById("sb-density").textContent = density;
+}
+
+// ════════════════════════════════════════════════════════════════
+//  CLOCK DISPLAY
+// ════════════════════════════════════════════════════════════════
+function updateClock() {
+  const el = document.getElementById("clock-display");
+  // Alternate between 06:00 (the loop time) and actual time for drama
+  const t = new Date();
+  const h = String(t.getHours()).padStart(2,"0");
+  const m = String(t.getMinutes()).padStart(2,"0");
+  el.textContent = `${h}:${m}`;
+}
+updateClock();
+setInterval(updateClock, 30000);
+
+// ════════════════════════════════════════════════════════════════
+//  RESIZE HANDLER
+// ════════════════════════════════════════════════════════════════
+function onResize() {
+  const s = getSvgSize();
+  W = s.w; H = s.h;
+  simulation.force("center", d3.forceCenter(W/2, H/2));
+  simulation.force("radial_periph", d3.forceRadial(
+    Math.min(W, H) * 0.48, W/2, H/2
+  ).strength(d => d.periph ? 0.4 : 0));
+  simulation.alphaTarget(0.1).restart();
+  setTimeout(() => simulation.alphaTarget(0), 1000);
+}
+const ro = new ResizeObserver(onResize);
+ro.observe(svgEl);
+
+// ════════════════════════════════════════════════════════════════
+//  INIT
+// ════════════════════════════════════════════════════════════════
+buildLegend();
+buildRanking("deg");
+updateStats();
+
+// Initial center zoom
+simulation.on("end", () => {
+  resetZoom();
+});
+</script>
+</body>
+</html>
